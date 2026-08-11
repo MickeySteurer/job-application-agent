@@ -1,0 +1,73 @@
+name: Inspect application
+
+on:
+  push:
+    paths:
+      - 'queue/inspect/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: inspect-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Resolve inspection request
+        shell: bash
+        run: |
+          git diff --name-only HEAD^ HEAD -- 'queue/inspect/*.json' > /tmp/request-files.txt
+          echo "Files to inspect:"
+          cat /tmp/request-files.txt
+          test -s /tmp/request-files.txt
+
+      - name: Inspect applications
+        shell: bash
+        run: |
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            node src/inspect.js "$file"
+          done < /tmp/request-files.txt
+
+      - name: Upload inspection evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-inspection-${{ github.run_id }}
+          path: |
+            .artifacts/
+            applications/*/inspection.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Commit inspection results
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "job-application-agent[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add applications/
+          if git diff --cached --quiet; then
+            echo "No inspection result changes to commit."
+            exit 0
+          fi
+          git commit -m "Record application inspection"
+          git push
