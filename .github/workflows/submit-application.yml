@@ -1,0 +1,73 @@
+name: Submit approved application
+
+on:
+  push:
+    paths:
+      - 'approvals/*.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: submit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Resolve approval file
+        shell: bash
+        run: |
+          git diff --name-only HEAD^ HEAD -- 'approvals/*.json' > /tmp/approval-files.txt
+          echo "Approval files:"
+          cat /tmp/approval-files.txt
+          test -s /tmp/approval-files.txt
+
+      - name: Submit approved applications
+        shell: bash
+        run: |
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            node src/submit.js "$file"
+          done < /tmp/approval-files.txt
+
+      - name: Upload submission evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-submission-${{ github.run_id }}
+          path: |
+            .artifacts/
+            applications/*/submission.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Commit submission result
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "job-application-agent[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add applications/
+          if git diff --cached --quiet; then
+            echo "No submission result changes to commit."
+            exit 0
+          fi
+          git commit -m "Record application submission result"
+          git push
