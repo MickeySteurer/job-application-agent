@@ -1,0 +1,16 @@
+{
+  "name": "job-application-actions-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Free-first GitHub Actions + Playwright job application inspector and approved submitter",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "smoke": "node src/smoke.js",
+    "inspect": "node src/inspect.js",
+    "submit": "node src/submit.js"
+  },
+  "dependencies": {
+    "playwright": "1.55.0"
+  }
+}
