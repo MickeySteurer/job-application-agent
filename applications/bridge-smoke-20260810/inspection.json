@@ -1,0 +1,31 @@
+{
+  "application_id": "bridge-smoke-20260810",
+  "command_id": "inspect-bridge-smoke-20260810-e67fa6aad86d",
+  "company": "Smoke Test",
+  "role": "Bridge Validation",
+  "requested_url": "https://example.com",
+  "inspected_at": "2026-08-11T01:21:02.820Z",
+  "status": "NO_APPLICATION_FORM_FOUND",
+  "final_url": "https://example.com/",
+  "page_title": "Example Domain",
+  "body_excerpt": "Example Domain\n\nThis domain is for use in documentation examples without needing permission. Avoid use in operations.\n\nLearn more",
+  "fields": [],
+  "buttons": [
+    {
+      "index": 0,
+      "tag": "a",
+      "text": "Learn more",
+      "type": "",
+      "href": "https://iana.org/domains/example",
+      "disabled": false
+    }
+  ],
+  "safe_navigation": [],
+  "final_submit_candidates": [],
+  "stats": {
+    "fields": 0,
+    "required_fields": 0,
+    "sensitive_fields": 0,
+    "file_fields": 0
+  }
+}
