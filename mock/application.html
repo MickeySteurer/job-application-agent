@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Mock Job Application</title></head>
+<body>
+  <h1>Digital Marketing Specialist</h1>
+  <form id="application">
+    <label>First name <input id="first" name="firstName" required></label><br>
+    <label>Last name <input id="last" name="lastName" required></label><br>
+    <label>Email <input id="email" name="email" type="email" required></label><br>
+    <label>Phone <input id="phone" name="phone" required></label><br>
+    <label>LinkedIn <input id="linkedin" name="linkedin"></label><br>
+    <label>Desired salary <input id="salary" name="salary" required></label><br>
+    <fieldset>
+      <legend>Are you legally authorized to work in the United States?</legend>
+      <label><input type="radio" name="authorized" value="Yes" required> Yes</label>
+      <label><input type="radio" name="authorized" value="No" required> No</label>
+    </fieldset>
+    <label>Highest degree
+      <select id="degree" name="degree" required>
+        <option value="">Choose</option>
+        <option value="ba">Bachelor of Arts</option>
+        <option value="bs">Bachelor of Science</option>
+      </select>
+    </label><br>
+    <label>Why are you interested in this role?
+      <textarea id="interest" name="interest" required></textarea>
+    </label><br>
+    <label>Resume <input id="resume" name="resume" type="file" required></label><br>
+    <label>Disability status <input id="disability" name="disability"></label><br>
+    <button type="submit">Submit Application</button>
+  </form>
+  <script>
+    document.getElementById('application').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.body.innerHTML = '<h1>Thank you</h1><p>Your application has been submitted successfully.</p>';
+      document.title = 'Application submitted';
+    });
+  </script>
+</body>
+</html>
