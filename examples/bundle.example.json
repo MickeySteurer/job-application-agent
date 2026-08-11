@@ -1,0 +1,16 @@
+{
+  "application_id": "company-role-2026-08-10",
+  "company": "Example Company",
+  "role": "Example Role",
+  "job_url": "https://example.com/jobs/example-role",
+  "profile_path": "profile/professional.json",
+  "answers": {
+    "text|desired salary": "85000",
+    "radio|are you legally authorized to work in the united states": "Yes"
+  },
+  "files": {},
+  "default_files": {
+    "resume": "applications/company-role-2026-08-10/files/Michael_Steurer_Resume.pdf",
+    "cover_letter": "applications/company-role-2026-08-10/files/Michael_Steurer_Cover_Letter.pdf"
+  }
+}
