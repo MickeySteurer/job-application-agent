@@ -1,0 +1,70 @@
+{
+  "application_id": "middesk-outbound-marketing-engineer",
+  "command_id": "submit-middesk-outbound-marketing-engineer-c9221bf28764",
+  "company": "Middesk",
+  "role": "Outbound Marketing Engineer",
+  "attempted_at": "2026-08-13T19:22:09.498Z",
+  "status": "NEEDS_USER_INPUT",
+  "missing_fields": [
+    {
+      "key": "textarea|tell us about a marketing campaign or project you led that had a significant impact what were the goals your approach and the results",
+      "label": "Tell us about a marketing campaign or project you led that had a significant impact. What were the goals, your approach, and the results?",
+      "reason": "REQUIRED_FIELD_UNRESOLVED"
+    }
+  ],
+  "final_url": "https://jobs.ashbyhq.com/middesk/fb290dfd-932c-41c9-9216-27c2cf5c233e/application",
+  "page_log": [
+    {
+      "step": 0,
+      "url": "https://jobs.ashbyhq.com/middesk/fb290dfd-932c-41c9-9216-27c2cf5c233e/application",
+      "actions": [
+        {
+          "field": "text|name",
+          "action": "fill",
+          "result": {
+            "filled": true
+          }
+        },
+        {
+          "field": "email|email",
+          "action": "fill",
+          "result": {
+            "filled": true
+          }
+        },
+        {
+          "field": "file|resume",
+          "action": "upload",
+          "result": {
+            "uploaded": true
+          }
+        },
+        {
+          "field": "text|linkedin",
+          "action": "fill",
+          "result": {
+            "filled": true
+          }
+        },
+        {
+          "field": "checkbox|yes",
+          "action": "fill",
+          "result": {
+            "filled": true
+          }
+        }
+      ],
+      "missing": [
+        {
+          "key": "textarea|tell us about a marketing campaign or project you led that had a significant impact what were the goals your approach and the results",
+          "label": "Tell us about a marketing campaign or project you led that had a significant impact. What were the goals, your approach, and the results?",
+          "reason": "REQUIRED_FIELD_UNRESOLVED"
+        }
+      ],
+      "submit_candidates": [
+        "Submit Application"
+      ],
+      "navigation": []
+    }
+  ]
+}
