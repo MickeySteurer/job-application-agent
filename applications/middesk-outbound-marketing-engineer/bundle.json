@@ -1,0 +1,16 @@
+{
+  "job_url": "https://jobs.ashbyhq.com/middesk/fb290dfd-932c-41c9-9216-27c2cf5c233e/application",
+  "answers": {
+    "text|name": "Michael Steurer",
+    "email|email": "mickey.steurer@gmail.com",
+    "text|linkedin": "https://linkedin.com/in/mickey-steurer",
+    "checkbox|yes": true
+  },
+  "company": "Middesk",
+  "role": "Outbound Marketing Engineer",
+  "profile_path": "profile/professional.json",
+  "files": {},
+  "default_files": {
+    "resume": "runtime/middesk-outbound-marketing-engineer/files/Michael_Steurer_Resume.pdf"
+  }
+}
